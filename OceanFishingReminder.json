@@ -18,7 +18,7 @@
 	"ImageUrls": [
 	    "https://cdn.discordapp.com/attachments/1091058060384022702/1393568913434087434/image.png"
 	],
-	"IconUrl": "https://cdn.discordapp.com/attachments/1091058060384022702/1393568913434087434/image.png",
+	"IconUrl": "https://raw.githubusercontent.com/xi94/ocean-fishing-reminder/main/OceanFishingReminder/images/icon.png",
 	"Punchline": "helps remind you of ocean fishing",
 	"AcceptsFeedback": true,
 	"DownloadLinkInstall": "https://github.com/xi94/ocean-fishing-reminder/releases/download/1.1.0.0/latest.zip",
