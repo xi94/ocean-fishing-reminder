@@ -2,7 +2,7 @@
     {
         "Author": "xi94",
         "Name": "Ocean Fishing Reminder",
-        "AssemblyVersion": ".0.0.1",
+        "AssemblyVersion": "0.0.0.1",
         "InternalName": "OceanFishingReminder",
         "Punchline": "reminds you to queue up for ocean fishing",
         "Description": "helps you remember to queue up for ocean fishing by displaying a notification on your screen",
