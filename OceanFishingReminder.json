@@ -22,7 +22,6 @@
 	"Punchline": "helps remind you of ocean fishing",
 	"AcceptsFeedback": true,
 	"DownloadLinkInstall": "https://github.com/xi94/ocean-fishing-reminder/releases/download/release/latest.zip",
-	"DownloadLinkUpdate": "https://github.com/xi94/ocean-fishing-reminder/releases/download/release/latest.zip",
-	
+	"DownloadLinkUpdate": "https://github.com/xi94/ocean-fishing-reminder/releases/download/release/latest.zip",	
     }
 ]
