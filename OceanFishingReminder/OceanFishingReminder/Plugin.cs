@@ -34,10 +34,10 @@ public class MainWindow : Window, IDisposable {
     private Configuration Config;
 
     public MainWindow(OceanFishingReminder plugin)
-        : base("Ocean Fishing Reminder##hamstercute", ImGuiWindowFlags.NoScrollbar | ImGuiWindowFlags.NoScrollWithMouse) {
+        : base("Ocean Fishing Reminder", ImGuiWindowFlags.NoScrollbar | ImGuiWindowFlags.NoResize | ImGuiWindowFlags.NoCollapse | ImGuiWindowFlags.NoScrollWithMouse) {
         SizeConstraints = new WindowSizeConstraints {
-            MinimumSize = new Vector2(300, 100),
-            MaximumSize = new Vector2(float.MaxValue, float.MaxValue)
+            MinimumSize = new Vector2(280, 150),
+            MaximumSize = new Vector2(280, 150)
         };
 
         Plugin = plugin;
@@ -86,7 +86,7 @@ public class OceanFishingReminder : IDalamudPlugin {
     private const string CommandName = "/fishreminder";
     public Configuration Config { get; init; }
 
-    public readonly WindowSystem WindowSystem = new("Hamster Differential");
+    public readonly WindowSystem WindowSystem = new();
     private MainWindow MainWindow { get; init; }
 
     private bool HasNotified = false;
@@ -95,6 +95,12 @@ public class OceanFishingReminder : IDalamudPlugin {
     public OceanFishingReminder() {
         Config = PluginInterface.GetPluginConfig() as Configuration ?? new Configuration();
         MainWindow = new MainWindow(this);
+
+        WindowSystem.AddWindow(MainWindow);
+
+        CommandManager.AddHandler(CommandName, new CommandInfo(OnCommand) {
+            HelpMessage = "Open Ocean Fishing Reminder configuration"
+        });
 
         PluginInterface.UiBuilder.Draw += DrawUI;
         PluginInterface.UiBuilder.OpenMainUi += ToggleMainUI;
@@ -147,7 +153,7 @@ public class OceanFishingReminder : IDalamudPlugin {
         CommandManager.RemoveHandler(CommandName);
     }
 
-    private void DrawUI() => MainWindow.Draw();
+    private void DrawUI() => WindowSystem.Draw();
     private void OnCommand(string command, string args) => ToggleMainUI();
     public void ToggleMainUI() => MainWindow.Toggle();
 }
