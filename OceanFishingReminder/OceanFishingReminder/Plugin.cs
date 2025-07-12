@@ -22,7 +22,10 @@ namespace OceanFishingReminder;
 [Serializable]
 public class Configuration : IPluginConfiguration {
     public int Version { get; set; } = 1;
+
     public bool RemindUser { get; set; } = false;
+    public int TimeBeforeReminder { get; set; } = 5;
+
     public void Save() => OceanFishingReminder.PluginInterface.SavePluginConfig(this);
 }
 
@@ -31,14 +34,14 @@ public class MainWindow : Window, IDisposable {
     private Configuration Config;
 
     public MainWindow(OceanFishingReminder plugin)
-        : base("Ocean Fishing Reminder##hamster is cute", ImGuiWindowFlags.NoScrollbar | ImGuiWindowFlags.NoScrollWithMouse) {
+        : base("Ocean Fishing Reminder##hamstercute", ImGuiWindowFlags.NoScrollbar | ImGuiWindowFlags.NoScrollWithMouse) {
         SizeConstraints = new WindowSizeConstraints {
-            MinimumSize = new Vector2(375, 330),
+            MinimumSize = new Vector2(300, 100),
             MaximumSize = new Vector2(float.MaxValue, float.MaxValue)
         };
 
         Plugin = plugin;
-        Config = plugin.Configuration;
+        Config = Plugin.Config;
     }
 
     public void Dispose() { }
@@ -49,13 +52,29 @@ public class MainWindow : Window, IDisposable {
 
             // yeah we love it
             var remindUser = Config.RemindUser;
-
             if (ImGui.Checkbox("Reminder", ref remindUser)) {
                 Config.RemindUser = remindUser;
                 Config.Save();
             }
-        }
 
+            // no need to continue here as the rest will be a submenu of sorts
+            if (!remindUser) return;
+
+            float xPad = 26;
+
+            ImGui.SetCursorPosX(ImGui.GetCursorPosX() + xPad);
+            ImGui.Text("Time Before Reminder (Min)");
+
+            ImGui.SetNextItemWidth(178);
+            ImGui.SetCursorPosX(ImGui.GetCursorPosX() + xPad);
+
+            int timeBeforeReminder = Config.TimeBeforeReminder;
+            if (ImGui.SliderInt("##time remainder slider", ref timeBeforeReminder, 1, 60)) {
+                timeBeforeReminder = Math.Clamp(timeBeforeReminder, 1, 60); // ensure Ctrl + M1 values dont go above the limit
+                Config.TimeBeforeReminder = timeBeforeReminder;
+                Config.Save();
+            }
+        }
     }
 }
 
@@ -65,7 +84,7 @@ public class OceanFishingReminder : IDalamudPlugin {
     [PluginService] internal static IFramework Framework { get; private set; } = null!;
 
     private const string CommandName = "/fishreminder";
-    public Configuration Configuration { get; init; }
+    public Configuration Config { get; init; }
 
     public readonly WindowSystem WindowSystem = new("Hamster Differential");
     private MainWindow MainWindow { get; init; }
@@ -74,7 +93,7 @@ public class OceanFishingReminder : IDalamudPlugin {
     private long LastServerTime = 0;
 
     public OceanFishingReminder() {
-        Configuration = PluginInterface.GetPluginConfig() as Configuration ?? new Configuration();
+        Config = PluginInterface.GetPluginConfig() as Configuration ?? new Configuration();
         MainWindow = new MainWindow(this);
 
         PluginInterface.UiBuilder.Draw += DrawUI;
@@ -85,7 +104,7 @@ public class OceanFishingReminder : IDalamudPlugin {
     }
 
     private unsafe void OnFrameworkUpdate(IFramework framework) {
-        if (!Configuration.RemindUser) return;
+        if (!Config.RemindUser) return;
 
         var serverTime = FFXIVClientStructs.FFXIV.Client.System.Framework.Framework.GetServerTime();
         if (serverTime != LastServerTime) {
@@ -111,7 +130,7 @@ public class OceanFishingReminder : IDalamudPlugin {
         }
 
         var minutesLeft = (int)Math.Ceiling(timeUntilFishing.TotalMinutes);
-        if (minutesLeft <= 5 && minutesLeft > 0 && !HasNotified) {
+        if (minutesLeft <= Config.TimeBeforeReminder && minutesLeft > 0 && !HasNotified) {
             HasNotified = true;
             ShowNotification($"Ocean Fishing starts in {minutesLeft} minute{(minutesLeft == 1 ? "" : "s")}!");
         }
