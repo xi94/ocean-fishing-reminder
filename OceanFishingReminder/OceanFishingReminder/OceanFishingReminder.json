@@ -1,6 +1,7 @@
 {
   "Author": "xi94",
   "Name": "Ocean Fishing Reminder",
+  "InternalName": "OceanFishingReminder",
   "Punchline": "helps remind you of ocean fishing",
   "Description": "reminds you right before the ocean fishing queue starts",
   "ApplicableVersion": "any",
