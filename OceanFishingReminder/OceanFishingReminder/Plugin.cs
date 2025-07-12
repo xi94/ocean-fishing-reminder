@@ -21,7 +21,7 @@ namespace OceanFishingReminder;
 
 [Serializable]
 public class Configuration : IPluginConfiguration {
-    public int Version { get; set; } = 1;
+    public int Version { get; set; } = 2;
 
     public bool RemindUser { get; set; } = false;
     public int TimeBeforeReminder { get; set; } = 5;
