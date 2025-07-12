@@ -4,7 +4,14 @@
   "Punchline": "helps remind you of ocean fishing",
   "Description": "reminds you right before the ocean fishing queue starts",
   "ApplicableVersion": "any",
-  "Tags": [
-    "fishing"
-  ],
+  "Tags": ["fishing"],
+  "RepoUrl": "https://github.com/xi94/ocean-fishing-reminder",
+  "IconUrl": "",
+  "ImageUrls": ["https://cdn.discordapp.com/attachments/1091058060384022702/1393568913434087434/image.png"],
+  "DalamudApiLevel": 11,
+  "LoadRequiredState": 0,
+  "LoadSync": false,
+  "CanUnloadAsync": false,
+  "LoadPriority": 0,
+  "AcceptsFeedback": true,
 }
