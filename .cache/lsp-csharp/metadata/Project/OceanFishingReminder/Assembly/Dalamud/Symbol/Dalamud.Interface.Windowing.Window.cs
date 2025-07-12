@@ -9,14 +9,12 @@ using System.Collections.Generic;
 using System.Numerics;
 using ImGuiNET;
 
-namespace Dalamud.Interface.Windowing
-{
+namespace Dalamud.Interface.Windowing {
     //
     // Summary:
     //     Base class you can use to implement an ImGui window for use with the built-in
     //     Dalamud.Interface.Windowing.WindowSystem.
-    public abstract class Window
-    {
+    public abstract class Window {
         //
         // Summary:
         //     Initializes a new instance of the Dalamud.Interface.Windowing.Window class.
@@ -207,8 +205,7 @@ namespace Dalamud.Interface.Windowing
         //
         // Summary:
         //     Structure detailing the size constraints of a window.
-        public struct WindowSizeConstraints
-        {
+        public struct WindowSizeConstraints {
             //
             // Summary:
             //     Initializes a new instance of the Dalamud.Interface.Windowing.Window.WindowSizeConstraints
@@ -228,8 +225,7 @@ namespace Dalamud.Interface.Windowing
         //
         // Summary:
         //     Structure describing a title bar button.
-        public class TitleBarButton
-        {
+        public class TitleBarButton {
             public TitleBarButton();
 
             //

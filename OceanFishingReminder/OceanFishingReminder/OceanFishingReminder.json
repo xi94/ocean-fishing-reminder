@@ -7,7 +7,7 @@
   "ApplicableVersion": "any",
   "Tags": ["fishing"],
   "RepoUrl": "https://github.com/xi94/ocean-fishing-reminder",
-  "IconUrl": "",
+  "IconUrl": "https://cdn.discordapp.com/attachments/1091058060384022702/1393568913434087434/image.png",
   "ImageUrls": ["https://cdn.discordapp.com/attachments/1091058060384022702/1393568913434087434/image.png"],
   "DalamudApiLevel": 11,
   "LoadRequiredState": 0,
