@@ -14,4 +14,6 @@
   "CanUnloadAsync": false,
   "LoadPriority": 0,
   "AcceptsFeedback": true,
+  "DownloadLinkInstall": "https://github.com/xi94/ocean-fishing-reminder/releases/download/release/latest.zip",
+  "DownloadLinkUpdate": "https://github.com/xi94/ocean-fishing-reminder/releases/download/release/latest.zip",
 }
