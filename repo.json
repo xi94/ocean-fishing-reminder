@@ -2,14 +2,14 @@
     {
         "Author": "xi94",
         "Name": "Ocean Fishing Reminder",
-        "AssemblyVersion": "0.0.0.1",
+        "AssemblyVersion": ".0.0.1",
         "InternalName": "OceanFishingReminder",
         "Punchline": "reminds you to queue up for ocean fishing",
         "Description": "helps you remember to queue up for ocean fishing by displaying a notification on your screen",
         "Tags": ["fishing", "ocean fishing"],
         "RepoUrl": "https://github.com/xi94/ocean-fishing-reminder",
         "ImageUrls": ["https://i.imgur.com/LLZ1yN9.png"],
-        "DalamudApiLevel": "11",
+        "DalamudApiLevel": 11,
         "ApplicableVersion": "any",
         "DownloadLinkInstall": "https://github.com/xi94/ocean-fishing-reminder/releases/download/release/latest.zip",
         "DownloadLinkUpdate": "https://github.com/xi94/ocean-fishing-reminder/releases/download/release/latest.zip"
