@@ -1,0 +1,18 @@
+{
+  "Author": "xi94",
+  "Name": "Ocean Fishing Reminder",
+  "InternalName": "OceanFishingReminder",
+  "AssemblyVersion": "0.0.0.1",
+  "Description": "reminds you right before the ocean fishing queue starts",
+  "ApplicableVersion": "any",
+  "Tags": [
+    "fishing"
+  ],
+  "DalamudApiLevel": 12,
+  "LoadRequiredState": 0,
+  "LoadSync": false,
+  "CanUnloadAsync": false,
+  "LoadPriority": 0,
+  "Punchline": "helps remind you of ocean fishing",
+  "AcceptsFeedback": true
+}
