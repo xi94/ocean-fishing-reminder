@@ -3,7 +3,7 @@
 	"Author": "xi94",
 	"Name": "Ocean Fishing Reminder",
 	"InternalName": "OceanFishingReminder",
-	"AssemblyVersion": "1.1.0.1",
+	"AssemblyVersion": "1.1.0.2",
 	"Description": "gives you a notification right before you can queue up for ocean fishing",
 	"ApplicableVersion": "any",
 	"RepoUrl": "https://github.com/xi94/ocean-fishing-reminder",
@@ -18,7 +18,7 @@
 	"IconUrl": "https://raw.githubusercontent.com/xi94/ocean-fishing-reminder/main/OceanFishingReminder/images/icon.png",
 	"Punchline": "helps you to remember to queue up for ocean fishing!",
 	"AcceptsFeedback": true,
-    	"DownloadLinkInstall": "https://github.com/xi94/ocean-fishing-reminder/releases/download/1.1.0.1/latest.zip",
-	"DownloadLinkUpdate": "https://github.com/xi94/ocean-fishing-reminder/releases/download/1.1.0.1/latest.zip",
+    	"DownloadLinkInstall": "https://github.com/xi94/ocean-fishing-reminder/releases/download/1.1.0.2/latest.zip",
+	"DownloadLinkUpdate": "https://github.com/xi94/ocean-fishing-reminder/releases/download/1.1.0.2/latest.zip",
     }
 ]
