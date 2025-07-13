@@ -137,11 +137,11 @@ public class OceanFishingReminder : IDalamudPlugin {
 
         if (!HasNotified) {
             HasNotified = true;
-            ShowNotification($"Ocean Fishing starts in {minutesLeft} minute{(minutesLeft == 1 ? "" : "s")}!");
+            ShowReminder($"Ocean Fishing starts in {minutesLeft} minute{(minutesLeft == 1 ? "" : "s")}!");
         }
     }
     
-    private unsafe void ShowNotification(string text) {
+    private unsafe void ShowReminder(string text) {
         var timer = 10 * 5; // 5 seconds
         RaptureAtkModule.Instance()->ShowTextGimmickHint(text, RaptureAtkModule.TextGimmickHintStyle.Info, timer);
     }
