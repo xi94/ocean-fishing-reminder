@@ -1,17 +1,14 @@
 using System;
 using System.Numerics;
-
-using Dalamud.Game.Command;
 using Dalamud.Configuration;
-
+using Dalamud.Game.Command;
+using Dalamud.Interface.Utility.Raii;
+using Dalamud.Interface.Windowing;
 using Dalamud.IoC;
 using Dalamud.Plugin;
 using Dalamud.Plugin.Services;
-using Dalamud.Interface.Windowing;
-using Dalamud.Interface.Utility.Raii;
-
-using ImGuiNET;
 using FFXIVClientStructs.FFXIV.Client.UI;
+using ImGuiNET;
 
 namespace OceanFishingReminder;
 
@@ -32,12 +29,13 @@ public class MainWindow : Window, IDisposable {
     private OceanFishingReminder Plugin;
     private Configuration Config;
 
-    static private readonly ImGuiWindowFlags WindowFlags = ImGuiWindowFlags.NoScrollbar | ImGuiWindowFlags.NoResize | ImGuiWindowFlags.NoCollapse | ImGuiWindowFlags.NoScrollWithMouse;
-    
+    static private readonly ImGuiWindowFlags WindowFlags
+        = ImGuiWindowFlags.NoScrollbar | ImGuiWindowFlags.NoResize | ImGuiWindowFlags.NoCollapse | ImGuiWindowFlags.NoScrollWithMouse;
+
     public MainWindow(OceanFishingReminder plugin) : base("Ocean Fishing Reminder", WindowFlags) {
         Plugin = plugin;
         Config = Plugin.Config;
-        
+
         SizeConstraints = new WindowSizeConstraints {
             MinimumSize = new Vector2(280, 150),
             MaximumSize = new Vector2(280, 150)
@@ -94,7 +92,7 @@ public class OceanFishingReminder : IDalamudPlugin {
 
     public OceanFishingReminder() {
         Config = PluginInterface.GetPluginConfig() as Configuration ?? new Configuration();
-        
+
         MainWindow = new MainWindow(this);
         WindowSystem.AddWindow(MainWindow);
 
@@ -109,10 +107,10 @@ public class OceanFishingReminder : IDalamudPlugin {
 
     private unsafe void OnFrameworkUpdate(IFramework framework) {
         if (!Config.ShouldRemindUser) return;
-    
+
         var now = DateTime.Now;
         if (now < NextCheckTime) return;
-    
+
         CheckOceanFishingTimer();
         NextCheckTime = now.AddSeconds(1);
     }
@@ -129,7 +127,7 @@ public class OceanFishingReminder : IDalamudPlugin {
 
         var timeUntilFishing = nextFishingTime - time;
         var minutesLeft = (int)Math.Ceiling(timeUntilFishing.TotalMinutes);
-    
+
         if (minutesLeft <= 0 || minutesLeft > Config.ReminderThreshold) {
             HasNotified = false;
             return;
@@ -140,11 +138,9 @@ public class OceanFishingReminder : IDalamudPlugin {
             ShowReminder($"Ocean Fishing starts in {minutesLeft} minute{(minutesLeft == 1 ? "" : "s")}!");
         }
     }
-    
-    private unsafe void ShowReminder(string text) {
-        var timer = 10 * 5; // 5 seconds
-        RaptureAtkModule.Instance()->ShowTextGimmickHint(text, RaptureAtkModule.TextGimmickHintStyle.Info, timer);
-    }
+
+    private unsafe void ShowReminder(string text, int showDurationInSeconds = 5) =>
+        RaptureAtkModule.Instance()->ShowTextGimmickHint(text, RaptureAtkModule.TextGimmickHintStyle.Info, showDurationInSeconds);
 
     public void Dispose() {
         WindowSystem.RemoveAllWindows();
